@@ -12,7 +12,7 @@ height = 320
 screenCenterX = width/2
 screenCenterY = height/2
 amount = 1000 # explodes your pc when over 1000
-traillenght = 2 # amount of points in trail, makes it smoother
+trailPoints = 2 # amount of points in trail, makes it smoother
 
 pygame.init()
 screen = pygame.display.set_mode((width, height))
@@ -29,19 +29,20 @@ class Quadtree: #after club activity
         self.southeast = None
 
 class Particle:
-    def __init__(self, x, y, mass, color):
+    def __init__(self, x, y, mass, color, broken):
         self.x = x
         self.y = y
         self.mass = mass
-        self.radius = 1
+        self.radius = 3
         self.color = color
         self.xvel = 0 
         self.yvel = 0 
         self.max_force = 7.5
         self.threshold = 175
         self.friction = 2
-        self.drag = 0.05
+        self.drag = 0.075
         self.trail = [] #previous positions array
+        self.gravity = 0.97
 
     def update(self, particles):
         self.x += self.xvel/self.friction
@@ -49,9 +50,11 @@ class Particle:
         self.check_boundary(particles)
         self.interact_mouse()
         self.xvel *= (1 - self.drag)
-        self.yvel *= (1 - self.drag)
+        self.yvel *= (1 - self.drag) 
+        # self.yvel += self.gravity
+
         self.trail.append((self.x, self.y)) 
-        if len(self.trail) > traillenght: 
+        if len(self.trail) > trailPoints: 
             self.trail.pop(0)
 
     def check_boundary(self, particles):
@@ -86,7 +89,14 @@ class Particle:
             self.xvel -= force * math.cos(angle)
             self.yvel -= force * math.sin(angle)
 
-particles = [Particle(random.randrange(0, width), random.randrange(0, height),1, (randrange(0,255), randrange(0,255), randrange(0,255))) for _ in range(amount)]
+particles = [Particle(
+        random.randrange(0, width),
+        random.randrange(0, height),
+        1,
+        (randrange(0,255), randrange(0,255), randrange(0,255)),
+        False
+    ) for _ in range(amount)
+]
 
 def main():
 
@@ -110,10 +120,10 @@ def draw_particles(screen, particles):
     for particle in particles:
         magnitude = math.sqrt(particle.xvel * particle.xvel + particle.yvel * particle.yvel) * 10 
         magnitude = numpy.clip(magnitude, 0, 255)
-        newcolor = (magnitude,  255-magnitude, 255-magnitude)
+        newcolor = (magnitude,  magnitude, 255-magnitude)
         pygame.draw.circle(screen, newcolor, (particle.x, particle.y), particle.radius)
 
         #trail stuff
         for i in range(len(particle.trail) - 1):
-            pygame.draw.line(screen, newcolor, (particle.trail[i][0], particle.trail[i][1]), (particle.trail[i+1][0], particle.trail[i+1][1]), 1)
+            pygame.draw.line(screen, newcolor, (particle.trail[i][0], particle.trail[i][1]), (particle.trail[i+1][0], particle.trail[i+1][1]), particle.radius+1)
 main()
