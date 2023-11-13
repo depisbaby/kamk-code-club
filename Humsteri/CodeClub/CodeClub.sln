@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodeClub", "CodeClub\CodeClub.vcxproj", "{DB7E87A1-C0D2-4423-88F3-0C0D93D94299}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB7E87A1-C0D2-4423-88F3-0C0D93D94299}.Debug|x64.ActiveCfg = Debug|x64
+		{DB7E87A1-C0D2-4423-88F3-0C0D93D94299}.Debug|x64.Build.0 = Debug|x64
+		{DB7E87A1-C0D2-4423-88F3-0C0D93D94299}.Debug|x86.ActiveCfg = Debug|Win32
+		{DB7E87A1-C0D2-4423-88F3-0C0D93D94299}.Debug|x86.Build.0 = Debug|Win32
+		{DB7E87A1-C0D2-4423-88F3-0C0D93D94299}.Release|x64.ActiveCfg = Release|x64
+		{DB7E87A1-C0D2-4423-88F3-0C0D93D94299}.Release|x64.Build.0 = Release|x64
+		{DB7E87A1-C0D2-4423-88F3-0C0D93D94299}.Release|x86.ActiveCfg = Release|Win32
+		{DB7E87A1-C0D2-4423-88F3-0C0D93D94299}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {106A3D5B-2EE1-4DB0-8FAA-CF0BA07965C2}
+	EndGlobalSection
+EndGlobal
